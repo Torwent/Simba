@@ -66,6 +66,9 @@ jobs:
           
           lazbuild --build-mode=${{ matrix.config.build-mode }} "Source/Simba/Simba.lpi"
 
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
+      
       - name: Test Simba
         if: matrix.config.test != ''
         run: |
