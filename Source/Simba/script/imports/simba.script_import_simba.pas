@@ -197,7 +197,7 @@ begin
   end;
 end;
 
-procedure Lape_OpenScriptInTab(const Params: PParamArray); {$IFDEF Lape_CDECL}cdecl;{$ENDIF}
+procedure Lape_OpenFileInTab(const Params: PParamArray); {$IFDEF Lape_CDECL}cdecl;{$ENDIF}
 var
   Method: TSimbaMethod;
 begin
@@ -231,7 +231,7 @@ begin
     addGlobalFunc('function GetSimbaPID: PtrUInt;', @Lape_GetSimbaPID);
     addGlobalFunc('function GetSimbaTargetPID: PtrUInt;', @Lape_GetSimbaTargetPID);
     addGlobalFunc('function GetSimbaTargetWindow: TOSWindow;', @Lape_GetSimbaTargetWindow);
-    addGlobalFunc('procedure OpenFileInTab(const FileName: String);', @Lape_OpenScriptInTab);
+    addGlobalFunc('procedure OpenFileInTab(const FileName: String);', @Lape_OpenFileInTab);
   end;
 end;
 

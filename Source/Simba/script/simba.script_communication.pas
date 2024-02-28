@@ -81,7 +81,7 @@ type
     constructor Create; overload;
   end;
 
-  TSimbaMethod_OpenScriptInTab = class(TSimbaMethod)
+  TSimbaMethod_OpenFileInTab = class(TSimbaMethod)
   protected
     procedure DoInvoke; override;
   public
@@ -160,7 +160,7 @@ const
     TSimbaMethod_ClearDebug,
     TSimbaMethod_GetSimbaTargetPID,
     TSimbaMethod_GetSimbaTargetWindow,
-    TSimbaMethod_OpenScriptInTab,
+    TSimbaMethod_OpenFileInTab,
     TSimbaMethod_ScriptError,
     TSimbaMethod_ShowBitmap,
     TSimbaMethod_ClearDebugImage,
@@ -391,7 +391,7 @@ begin
   inherited Create();
 end;
 
-procedure TSimbaMethod_OpenScriptInTab.DoInvoke;
+procedure TSimbaMethod_OpenFileInTab.DoInvoke;
 var
   FileName: ShortString;
 begin
