@@ -39,39 +39,12 @@ type
     FBorderSize: Int32;
   public
     Selected: TOSWindow;
-    Selecting: Boolean;
 
-    constructor Select(Window: TOSWindow; BorderSize: Int32 = 4);
     constructor Create(BorderSize: Int32 = 4);
     destructor Destroy; override;
   end;
 
 implementation
-
-constructor TSimbaWindowSelector.Select(Window: TOSWindow; BorderSize: Int32);
-begin
-  if (Window <> Selected) then
-  begin
-    with Window.GetBounds() do
-    begin
-      FLeftForm.SetBounds(X1 - FBorderSize, Y1 - FBorderSize, FBorderSize, Y2 - Y1 + (FBorderSize * 2));
-      FLeftForm.ShowOnTop();
-
-      FRightForm.SetBounds(X2, Y1 - FBorderSize, FBorderSize, Y2 - Y1 + (FBorderSize * 2));
-      FRightForm.ShowOnTop();
-
-      FTopForm.SetBounds(X1, Y1 - FBorderSize, X2 - X1, FBorderSize);
-      FTopForm.ShowOnTop();
-
-      FBottomForm.SetBounds(X1, Y2, X2 - X1, FBorderSize);
-      FBottomForm.ShowOnTop();
-    end;
-
-    Selected := Window;
-  end;
-
-  Application.ProcessMessages();
-end;
 
 constructor TSimbaWindowSelector.Create(BorderSize: Int32);
 
@@ -84,6 +57,8 @@ constructor TSimbaWindowSelector.Create(BorderSize: Int32);
     Result.ShowInTaskBar := stNever;
   end;
 
+var
+  Window: TOSWindow;
 begin
   FBorderSize := BorderSize;
 
@@ -96,7 +71,30 @@ begin
 
   while FIOManager.IsMouseButtonDown(MOUSE_LEFT) do
   begin
-    Self.Select(GetWindowAtCursor(), BorderSize);
+    Window := GetWindowAtCursor();
+
+    if (Window <> Selected) then
+    begin
+      with Window.GetBounds() do
+      begin
+        FLeftForm.SetBounds(X1 - FBorderSize, Y1 - FBorderSize, FBorderSize, Y2 - Y1 + (FBorderSize * 2));
+        FLeftForm.ShowOnTop();
+
+        FRightForm.SetBounds(X2, Y1 - FBorderSize, FBorderSize, Y2 - Y1 + (FBorderSize * 2));
+        FRightForm.ShowOnTop();
+
+        FTopForm.SetBounds(X1, Y1 - FBorderSize, X2 - X1, FBorderSize);
+        FTopForm.ShowOnTop();
+
+        FBottomForm.SetBounds(X1, Y2, X2 - X1, FBorderSize);
+        FBottomForm.ShowOnTop();
+      end;
+
+      Selected := Window;
+    end;
+
+    Application.ProcessMessages();
+
     Sleep(25);
   end;
 end;
