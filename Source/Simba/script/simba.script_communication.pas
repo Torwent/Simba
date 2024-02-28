@@ -419,13 +419,13 @@ var
 begin
   Params.Read(FileName, SizeOf(ShortString));
   SimbaScriptTabsForm.Open(FileName);
+  SimbaForm.DoChangeScriptState(SimbaForm.MenuItemRun);
 end;
 
 constructor TSimbaMethod_RunScriptInTab.Create(FileName: ShortString);
 begin
   inherited Create();
   Params.Write(FileName, SizeOf(ShortString));
-  SimbaForm.DoChangeScriptState(SimbaForm.MenuItemRun);
 end;
 
 procedure TSimbaMethod_GetSimbaTargetPID.DoInvoke;
