@@ -201,7 +201,20 @@ procedure Lape_OpenFileInTab(const Params: PParamArray); {$IFDEF Lape_CDECL}cdec
 var
   Method: TSimbaMethod;
 begin
-  Method := TSimbaMethod_OpenScriptInTab.Create(PString(Params^[0])^);
+  Method := TSimbaMethod_OpenFileInTab.Create(PString(Params^[0])^);
+
+  try
+    SimbaScript.Invoke(Method);
+  finally
+    Method.Free();
+  end;
+end;
+
+procedure Lape_RunScriptInTab(const Params: PParamArray); {$IFDEF Lape_CDECL}cdecl;{$ENDIF}
+var
+  Method: TSimbaMethod;
+begin
+  Method := TSimbaMethod_RunScriptInTab.Create(PString(Params^[0])^);
 
   try
     SimbaScript.Invoke(Method);
@@ -232,6 +245,7 @@ begin
     addGlobalFunc('function GetSimbaTargetPID: PtrUInt;', @Lape_GetSimbaTargetPID);
     addGlobalFunc('function GetSimbaTargetWindow: TOSWindow;', @Lape_GetSimbaTargetWindow);
     addGlobalFunc('procedure OpenFileInTab(const FileName: String);', @Lape_OpenFileInTab);
+    addGlobalFunc('procedure RunScriptInTab(const FileName: String);', @Lape_RunScriptInTab);
   end;
 end;
 
