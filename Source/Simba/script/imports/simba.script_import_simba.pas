@@ -197,6 +197,19 @@ begin
   end;
 end;
 
+procedure Lape_OpenScriptInTab(const Params: PParamArray); {$IFDEF Lape_CDECL}cdecl;{$ENDIF}
+var
+  Method: TSimbaMethod;
+begin
+  Method := TSimbaMethod_OpenScriptInTab.Create(PString(Params^[0])^);
+
+  try
+    SimbaScript.Invoke(Method);
+  finally
+    Method.Free();
+  end;
+end;
+
 procedure Lape_Import_Simba(Compiler: TSimbaScript_Compiler);
 begin
   with Compiler do
