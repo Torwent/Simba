@@ -83,8 +83,8 @@ object SimbaColorHistoryForm: TSimbaColorHistoryForm
     TabOrder = 3
   end
   object ColourHexValue: TEdit
-    AnchorSideLeft.Control = ColourHexValue
-    AnchorSideTop.Control = ColourHexValue
+    AnchorSideLeft.Control = ColourValue
+    AnchorSideTop.Control = ColourValue
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
