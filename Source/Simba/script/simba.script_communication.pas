@@ -419,7 +419,7 @@ var
 begin
   Params.Read(FileName, SizeOf(ShortString));
   SimbaScriptTabsForm.Open(FileName);
-  SimbaForm.DoChangeScriptState(SimbaForm.MenuItemRun);
+  SimbaForm.RunButton.Click;
 end;
 
 constructor TSimbaMethod_RunScriptInTab.Create(FileName: ShortString);
