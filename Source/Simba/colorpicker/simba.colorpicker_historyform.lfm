@@ -82,9 +82,25 @@ object SimbaColorHistoryForm: TSimbaColorHistoryForm
     ReadOnly = True
     TabOrder = 3
   end
+  object ColourHexValue: TEdit
+    AnchorSideLeft.Control = ColourHexValue
+    AnchorSideTop.Control = ColourHexValue
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 397
+    Height = 23
+    Top = 33
+    Width = 119
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Top = 5
+    BorderSpacing.Right = 5
+    ReadOnly = True
+    TabOrder = 4
+  end
   object CoordValue: TLabel
-    AnchorSideLeft.Control = ColourValue
-    AnchorSideTop.Control = ColourValue
+    AnchorSideLeft.Control = ColourHexValue
+    AnchorSideTop.Control = ColourHexValue
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
@@ -115,7 +131,7 @@ object SimbaColorHistoryForm: TSimbaColorHistoryForm
     BorderSpacing.Bottom = 5
     Caption = 'Exit'
     OnClick = OkButtonClick
-    TabOrder = 4
+    TabOrder = 5
   end
   object CH_RGB_Label: TLabel
     AnchorSideLeft.Control = CoordValue
@@ -149,7 +165,7 @@ object SimbaColorHistoryForm: TSimbaColorHistoryForm
     DragMode = dmAutomatic
     Images = CHImages
     ScrollBars = ssAutoBoth
-    TabOrder = 5
+    TabOrder = 6
     OnAdvancedCustomDrawItem = ColourTreeAdvancedCustomDrawItem
     OnChange = ColourTreeChange
     OnDeletion = ColourTreeDeletion
@@ -173,7 +189,7 @@ object SimbaColorHistoryForm: TSimbaColorHistoryForm
     Caption = 'Save'
     Constraints.MinWidth = 80
     OnClick = CHSaveClick
-    TabOrder = 6
+    TabOrder = 7
   end
   object Button2: TButton
     AnchorSideLeft.Control = Button1
@@ -191,7 +207,7 @@ object SimbaColorHistoryForm: TSimbaColorHistoryForm
     Caption = 'Load'
     Constraints.MinWidth = 80
     OnClick = CHLoadClick
-    TabOrder = 7
+    TabOrder = 8
   end
   object Button3: TButton
     AnchorSideLeft.Control = DeleteButton
@@ -209,7 +225,7 @@ object SimbaColorHistoryForm: TSimbaColorHistoryForm
     Caption = 'Clear'
     Constraints.MinWidth = 80
     OnClick = CHClearClick
-    TabOrder = 8
+    TabOrder = 9
   end
   object CHImages: TImageList
     Scaled = True
