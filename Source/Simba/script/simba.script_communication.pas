@@ -85,7 +85,7 @@ type
   protected
     procedure DoInvoke; override;
   public
-    constructor Create; overload;
+    constructor Create(FileName: ShortString); overload;
   end;
 
   TSimbaMethod_ScriptError = class(TSimbaMethod)
