@@ -51,6 +51,7 @@ type
     CHImages: TImageList;
     OkButton: TButton;
     ColourValue: TEdit;
+    ColourHexValue: TEdit;
     CoordValue: TLabel;
     CHOpenDialog: TOpenDialog;
     PickNewColourButton: TButton;
@@ -243,6 +244,8 @@ begin
 
   { Change Form Text / Values }
   ColourValue.Caption := IntToStr(TColourPickerObject(Node.Data).Colour);
+  ColourHexValue.Caption := '$' + IntToHex(TColourPickerObject(Node.Data).Colour, 6);
+
   CoordValue.Caption := 'Coords: ' + IntToStr(TColourPickerObject(Node.Data).Pos.X) +
                         ', ' + IntToStr(TColourPickerObject(Node.Data).Pos.Y);
   SelectionName.Text := TColourPickerObject(Node.Data).Name;
