@@ -90,7 +90,7 @@ object SimbaColorHistoryForm: TSimbaColorHistoryForm
     AnchorSideRight.Side = asrBottom
     Left = 397
     Height = 23
-    Top = 33
+    Top = 61
     Width = 119
     Anchors = [akTop, akLeft, akRight]
     BorderSpacing.Top = 5
@@ -106,7 +106,7 @@ object SimbaColorHistoryForm: TSimbaColorHistoryForm
     AnchorSideRight.Side = asrBottom
     Left = 397
     Height = 1
-    Top = 63
+    Top = 86
     Width = 117
     Anchors = [akTop, akLeft, akRight]
     BorderSpacing.Top = 7
@@ -141,7 +141,7 @@ object SimbaColorHistoryForm: TSimbaColorHistoryForm
     AnchorSideRight.Side = asrBottom
     Left = 397
     Height = 1
-    Top = 71
+    Top = 74
     Width = 117
     Anchors = [akTop, akLeft, akRight]
     BorderSpacing.Top = 7
