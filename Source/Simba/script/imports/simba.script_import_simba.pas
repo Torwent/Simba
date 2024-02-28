@@ -231,6 +231,7 @@ begin
     addGlobalFunc('function GetSimbaPID: PtrUInt;', @Lape_GetSimbaPID);
     addGlobalFunc('function GetSimbaTargetPID: PtrUInt;', @Lape_GetSimbaTargetPID);
     addGlobalFunc('function GetSimbaTargetWindow: TOSWindow;', @Lape_GetSimbaTargetWindow);
+    addGlobalFunc('procedure OpenFileInTab(const FileName: String);', @Lape_OpenScriptInTab);
   end;
 end;
 
