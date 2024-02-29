@@ -549,28 +549,6 @@ begin
   PControl(Params^[0])^.OnClick := PNotifyEvent(Params^[1])^;
 end;
 
-
-procedure Lape_TControl_OnMouseEnter_Read(const Params: PParamArray; const Result: Pointer); {$IFDEF Lape_CDECL}cdecl;{$ENDIF}
-begin
-  PNotifyEvent(Result)^ := PControl(Params^[0])^.OnMouseEnter;
-end;
-
-procedure Lape_TControl_OnMouseEnter_Write(const Params: PParamArray); {$IFDEF Lape_CDECL}cdecl;{$ENDIF}
-begin
-  PControl(Params^[0])^.OnMouseEnter := PNotifyEvent(Params^[1])^;
-end;
-
-procedure Lape_TControl_OnMouseLeave_Read(const Params: PParamArray; const Result: Pointer); {$IFDEF Lape_CDECL}cdecl;{$ENDIF}
-begin
-  PNotifyEvent(Result)^ := PControl(Params^[0])^.OnMouseLeave;
-end;
-
-procedure Lape_TControl_OnMouseLeave_Write(const Params: PParamArray); {$IFDEF Lape_CDECL}cdecl;{$ENDIF}
-begin
-  PControl(Params^[0])^.OnMouseLeave := PNotifyEvent(Params^[1])^;
-end;
-
-
 //Read: property OnResize: TNotifyEvent read OnResize write OnResize;
 procedure Lape_TControl_OnResize_Read(const Params: PParamArray; const Result: Pointer); {$IFDEF Lape_CDECL}cdecl;{$ENDIF}
 begin
@@ -811,8 +789,6 @@ begin
     addClassVar('TControl', 'MouseEntered', 'Boolean', @Lape_TControl_MouseEntered_Read);
     addClassVar('TControl', 'OnChangeBounds', 'TNotifyEvent', @Lape_TControl_OnChangeBounds_Read, @Lape_TControl_OnChangeBounds_Write);
     addClassVar('TControl', 'OnClick', 'TNotifyEvent', @Lape_TControl_OnClick_Read, @Lape_TControl_OnClick_Write);
-    addClassVar('TControl', 'OnMouseEnter', 'TNotifyEvent', @Lape_TControl_OnMouseEnter_Read, @Lape_TControl_OnMouseEnter_Write);
-    addClassVar('TControl', 'OnMouseLeave', 'TNotifyEvent', @Lape_TControl_OnMouseLeave_Read, @Lape_TControl_OnMouseLeave_Write);
     addClassVar('TControl', 'OnResize', 'TNotifyEvent', @Lape_TControl_OnResize_Read, @Lape_TControl_OnResize_Write);
     addClassVar('TControl', 'Visible', 'Boolean', @Lape_TControl_Visible_Read, @Lape_TControl_Visible_Write);
     addClassVar('TControl', 'ShowHint', 'Boolean', @Lape_TControl_ShowHint_Read, @Lape_TControl_ShowHint_Write);
