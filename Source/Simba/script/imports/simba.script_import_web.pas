@@ -144,10 +144,18 @@ begin
   PInt32(Result)^ := SimbaScript.Client.MInternets.GetHTTPClient(PInt32(Params^[0])^).ResponseCode;
 end;
 
+
 procedure Lape_GetHTTPPageEx(const Params: PParamArray; const Result: Pointer); {$IFDEF Lape_CDECL}cdecl;{$ENDIF}
 begin
   PInt32(Result)^ := SimbaScript.Client.MInternets.GetHTTPClient(PInt32(Params^[0])^).GetHTTPPage(PString(Params^[1])^, PString(Params^[2])^);
 end;
+
+
+procedure Lape_GetHTTPZipFileAsync(const Params: PParamArray; const Result: Pointer); {$IFDEF Lape_CDECL}cdecl;{$ENDIF}
+begin
+  PInt32(Result)^ := SimbaScript.Client.MInternets.GetHTTPClient(PInt32(Params^[0])^).GetHTTPZipFileAsync(PString(Params^[1])^, PString(Params^[2])^);
+end;
+
 
 procedure Lape_GetHTTPUserAgent(const Params: PParamArray; const Result: Pointer); {$IFDEF Lape_CDECL}cdecl;{$ENDIF}
 begin
@@ -191,6 +199,7 @@ begin
     addGlobalFunc('procedure SetHTTPUserAgent(Client: Int32; Agent: String);', @Lape_SetHTTPUserAgent);
     addGlobalFunc('function GetHTTPUserAgent(Client: Int32): String;', @Lape_GetHTTPUserAgent);
     addGlobalFunc('function GetHTTPPageEx(Client: Int32; URL: String; FilePath: String): Int32;', @Lape_GetHTTPPageEx);
+    addGlobalFunc('function GetHTTPZipFileAsync(Client: Int32; URL: String; FilePath: String): Int32;', @Lape_GetHTTPZipFileAsync);
     addGlobalFunc('function PostHTTPPage(Client: Int32; URL, PostData: String): String', @Lape_PostHTTPPage);
     addGlobalFunc('function PostHTTPPageEx(Client: Int32; URL: String): String', @Lape_PostHTTPPageEx);
     addGlobalFunc('procedure SetHTTPContentType(Client: Int32; Value: String);', @Lape_SetHTTPContentType);
