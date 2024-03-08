@@ -171,11 +171,8 @@ begin
   FLock := TCriticalSection.Create();
 
   Editor.Font.Color := clWindowText;
-  {$IFDEF DARWIN}
-  Editor.Font.Quality := fqAntialiased;
-  {$ELSE}
-  Editor.Font.Quality := fqDefault; // weird one, I know
-  {$ENDIF}
+
+  Editor.Font.Quality := {$IFDEF DARWIN}fqAntialiased{$ELSE}fqDefault{$ENDIF}; // weird one, I know
 
   SimbaSettings.Editor.FontName.AddOnChangeHandler(@SettingChanged_EditorFont).Changed();
   SimbaSettings.Editor.FontSize.AddOnChangeHandler(@SettingChanged_EditorFontSize).Changed();

@@ -647,7 +647,7 @@ begin
       if HTTPRequest.Exception <> nil then
       begin
         if HTTPRequest.Exception is EFCreateError then
-          Self.Error('Install failed: %s. A file is most likely in use. Restart Simba(s) and try again.', [HTTPRequest.Exception.Message])
+          Self.Error('Install failed: %s. A file is most likely in use. Restart Simba(s), target(s) antry again.', [HTTPRequest.Exception.Message])
         else
           Self.Error('Install failed: %s', [HTTPRequest.Exception.Message]);
       end else
