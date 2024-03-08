@@ -27,7 +27,7 @@ unit simba.internet;
 interface
 
 uses
-  Classes, SysUtils, blcksock, simba.MufasaTypes, math, simba.httpclient, simba.httpclient_async;
+  Classes, SysUtils, blcksock, simba.MufasaTypes, math, simba.httpclient;
 
 function GetPage(URL: String): String;
 
@@ -59,8 +59,6 @@ type
     function GetHTTPPage(URL: String; FilePath: String): Int32; overload;
     function PostHTTPPage(URL: String; PostData: String): String; overload;
     function PostHTTPPage(URL: String): String; overload;
-
-    function GetHTTPZipFileAsync(URL: String; FilePath: String): Int32;
 
     function FormPost(const URL, FieldName, FileName: string): String; overload;
     function FormPost(const URL, FieldName, FileName: string; Stream: TStream): String; overload;
@@ -238,7 +236,6 @@ begin
   FHTTPClient.RequestHeader['User-Agent'] := Value;
 end;
 
-
 function THTTPClient.GetHTTPPage(URL: String): String;
 begin
   Result := '';
@@ -275,7 +272,6 @@ begin
   Result := FHTTPClient.ResponseCode;
 end;
 
-
 function THTTPClient.PostHTTPPage(URL: String; PostData: String): String;
 begin
   Result := '';
@@ -310,37 +306,6 @@ begin
   Result := PostHTTPPage(URL, PostData);
 end;
 
-
-function THTTPClient.GetHTTPZipFileAsync(URL: String; FilePath: String): Int32;
-var
-  HTTPRequest: TSimbaHTTPRequestZIP;
-begin
-  if (not URL.StartsWith('http://', True)) and (not URL.StartsWith('https://', True)) then
-    URL := 'http://' + URL;
-
-  HTTPRequest := TSimbaHTTPRequestZIP.Create(URL, FilePath, False, []);
-
-  try
-    while HTTPRequest.Running do
-      Sleep(25);
-
-    if HTTPRequest.Exception <> nil then
-    begin
-      if HTTPRequest.Exception is EFCreateError then
-         WriteLn('Download failed: ' + HTTPRequest.Exception.Message + '. A file is most likely in use. Restart Simba(s), target(s) and try again.')
-      else
-        WriteLn('Download failed: ' + HTTPRequest.Exception.Message);
-    end else
-    if HTTPRequest.ResponseCode <> HTTP_OK then
-      WriteLn('Install failed: HTTP error ' + IntToStr(HTTPRequest.ResponseCode));
-
-    Result := HTTPRequest.ResponseCode;
-  finally
-    HTTPRequest.Free();
-  end;
-end;
-
-
 function THTTPClient.FormPost(const URL, FieldName, FileName: string): String;
 begin
   Result := FHTTPClient.FormPost(URL, FieldName, FileName);
@@ -350,7 +315,6 @@ function THTTPClient.FormPost(const URL, FieldName, FileName: string; Stream: TS
 begin
   Result := FHTTPClient.FormPost(URL, FieldName, FileName, Stream);
 end;
-
 
 procedure THTTPClient.SetProxy(Host, Port: String);
 var
