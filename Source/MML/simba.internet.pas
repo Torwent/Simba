@@ -151,9 +151,9 @@ end;
 function TMInternet.GetHTTPClient(Index: integer): THTTPClient;
 begin
   if (index < 0) or (index >= HTTPClients.Count) then
-    raise exception.CreateFmt('GetHTTPClient: Trying to acces an index(%d) that is out of range',[index]);
+    raise exception.CreateFmt('GetHTTPClient: Trying to access an index(%d) that is out of range',[index]);
   if HTTPClients[index] = nil then
-    raise exception.CreateFmt('GetHTTPClient: Trying to acces an index(%d) that is freed',[index]);
+    raise exception.CreateFmt('GetHTTPClient: Trying to access an index(%d) that is freed',[index]);
   result := THTTPClient(httpclients[index]);
 end;
 
