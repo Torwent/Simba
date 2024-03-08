@@ -95,6 +95,13 @@ type
     constructor Create(FileName: ShortString); overload;
   end;
 
+  TSimbaMethod_CloseScriptTab = class(TSimbaMethod)
+  protected
+    procedure DoInvoke; override;
+  public
+    constructor Create; overload;
+  end;
+
   TSimbaMethod_ScriptError = class(TSimbaMethod)
   protected
     procedure DoInvoke; override;
@@ -169,6 +176,7 @@ const
     TSimbaMethod_GetSimbaTargetWindow,
     TSimbaMethod_OpenFileInTab,
     TSimbaMethod_RunScriptInTab,
+    TSimbaMethod_CloseScriptTab,
     TSimbaMethod_ScriptError,
     TSimbaMethod_ShowBitmap,
     TSimbaMethod_ClearDebugImage,
@@ -399,6 +407,7 @@ begin
   inherited Create();
 end;
 
+
 procedure TSimbaMethod_OpenFileInTab.DoInvoke;
 var
   FileName: ShortString;
@@ -412,6 +421,7 @@ begin
   inherited Create();
   Params.Write(FileName, SizeOf(ShortString));
 end;
+
 
 procedure TSimbaMethod_RunScriptInTab.DoInvoke;
 var
@@ -427,6 +437,21 @@ begin
   inherited Create();
   Params.Write(FileName, SizeOf(ShortString));
 end;
+
+
+procedure TSimbaMethod_CloseScriptTab.DoInvoke;
+var
+  Aborted: Boolean;
+begin
+  SimbaScriptTabsForm.RemoveTab(SimbaScriptTabsForm.CurrentTab, Aborted);
+end;
+
+constructor TSimbaMethod_CloseScriptTab.Create;
+begin
+  inherited Create();
+end;
+
+
 
 procedure TSimbaMethod_GetSimbaTargetPID.DoInvoke;
 begin
@@ -447,6 +472,7 @@ constructor TSimbaMethod_ClearDebug.Create;
 begin
   inherited Create();
 end;
+
 
 procedure TSimbaMethod_GetSimbaPID.DoInvoke;
 begin

@@ -223,6 +223,19 @@ begin
   end;
 end;
 
+procedure Lape_CloseScriptTab(const Params: PParamArray); {$IFDEF Lape_CDECL}cdecl;{$ENDIF}
+var
+  Method: TSimbaMethod;
+begin
+  Method := TSimbaMethod_CloseScriptTab.Create();
+
+  try
+    SimbaScript.Invoke(Method);
+  finally
+    Method.Free();
+  end;
+end;
+
 procedure Lape_Import_Simba(Compiler: TSimbaScript_Compiler);
 begin
   with Compiler do
@@ -246,6 +259,7 @@ begin
     addGlobalFunc('function GetSimbaTargetWindow: TOSWindow;', @Lape_GetSimbaTargetWindow);
     addGlobalFunc('procedure OpenFileInTab(const FileName: String);', @Lape_OpenFileInTab);
     addGlobalFunc('procedure RunScriptInTab(const FileName: String);', @Lape_RunScriptInTab);
+    addGlobalFunc('procedure CloseScriptTab;', @Lape_CloseScriptTab);
   end;
 end;
 
