@@ -441,9 +441,13 @@ end;
 
 procedure TSimbaMethod_CloseScriptTab.DoInvoke;
 var
-  Aborted: Boolean;
+  aborted: Boolean;
+  count: Int32;
 begin
-  SimbaScriptTabsForm.RemoveTab(SimbaScriptTabsForm.CurrentTab, Aborted);
+  count := SimbaScriptTabsForm.TabCount;
+  SimbaScriptTabsForm.RemoveTab(SimbaScriptTabsForm.CurrentTab, aborted);
+  if count > 1 then
+     SimbaScriptTabsForm.AddTab();
 end;
 
 constructor TSimbaMethod_CloseScriptTab.Create;
