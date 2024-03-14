@@ -81,14 +81,8 @@ type
     constructor Create; overload;
   end;
 
-  TSimbaMethod_OpenFileInTab = class(TSimbaMethod)
-  protected
-    procedure DoInvoke; override;
-  public
-    constructor Create(FileName: ShortString); overload;
-  end;
 
-  TSimbaMethod_RunScriptInTab = class(TSimbaMethod)
+  TSimbaMethod_OpenFileInTab = class(TSimbaMethod)
   protected
     procedure DoInvoke; override;
   public
@@ -101,6 +95,21 @@ type
   public
     constructor Create; overload;
   end;
+
+  TSimbaMethod_SimbaRunButton = class(TSimbaMethod)
+  protected
+    procedure DoInvoke; override;
+  public
+    constructor Create; overload;
+  end;
+
+  TSimbaMethod_CountSimbaTabs = class(TSimbaMethod)
+  protected
+    procedure DoInvoke; override;
+  public
+    constructor Create; overload;
+  end;
+
 
   TSimbaMethod_ScriptError = class(TSimbaMethod)
   protected
@@ -175,8 +184,9 @@ const
     TSimbaMethod_GetSimbaTargetPID,
     TSimbaMethod_GetSimbaTargetWindow,
     TSimbaMethod_OpenFileInTab,
-    TSimbaMethod_RunScriptInTab,
     TSimbaMethod_CloseScriptTab,
+    TSimbaMethod_SimbaRunButton,
+    TSimbaMethod_CountSimbaTabs,
     TSimbaMethod_ScriptError,
     TSimbaMethod_ShowBitmap,
     TSimbaMethod_ClearDebugImage,
@@ -423,22 +433,6 @@ begin
 end;
 
 
-procedure TSimbaMethod_RunScriptInTab.DoInvoke;
-var
-  FileName: ShortString;
-begin
-  Params.Read(FileName, SizeOf(ShortString));
-  SimbaScriptTabsForm.Open(FileName);
-  SimbaForm.RunButton.Click;
-end;
-
-constructor TSimbaMethod_RunScriptInTab.Create(FileName: ShortString);
-begin
-  inherited Create();
-  Params.Write(FileName, SizeOf(ShortString));
-end;
-
-
 procedure TSimbaMethod_CloseScriptTab.DoInvoke;
 var
   aborted: Boolean;
@@ -451,6 +445,28 @@ begin
 end;
 
 constructor TSimbaMethod_CloseScriptTab.Create;
+begin
+  inherited Create();
+end;
+
+
+procedure TSimbaMethod_SimbaRunButton.DoInvoke;
+begin
+  SimbaForm.RunButton.Click;
+end;
+
+constructor TSimbaMethod_SimbaRunButton.Create;
+begin
+  inherited Create();
+end;
+
+
+procedure TSimbaMethod_CountSimbaTabs.DoInvoke;
+begin
+  Result.Write(SimbaScriptTabsForm.TabCount, SizeOf(Int32));
+end;
+
+constructor TSimbaMethod_CountSimbaTabs.Create;
 begin
   inherited Create();
 end;
