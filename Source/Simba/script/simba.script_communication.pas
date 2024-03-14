@@ -105,14 +105,14 @@ type
   end;
 
 
-  TSimbaMethod_CurrentSimbaTab = class(TSimbaMethod)
+  TSimbaMethod_SimbaCurrentTab = class(TSimbaMethod)
   protected
     procedure DoInvoke; override;
   public
     constructor Create; overload;
   end;
 
-  TSimbaMethod_CountSimbaTabs = class(TSimbaMethod)
+  TSimbaMethod_SimbaCountTabs = class(TSimbaMethod)
   protected
     procedure DoInvoke; override;
   public
@@ -211,8 +211,8 @@ const
     TSimbaMethod_SimbaRunButton,
     TSimbaMethod_SimbaRunDefault,
 
-    TSimbaMethod_CurrentSimbaTab,
-    TSimbaMethod_CountSimbaTabs,
+    TSimbaMethod_SimbaCurrentTab,
+    TSimbaMethod_SimbaCountTabs,
     TSimbaMethod_SimbaCloseTab,
     TSimbaMethod_SimbaCloseCurrentTab,
 
@@ -481,21 +481,21 @@ end;
 
 
 
-procedure TSimbaMethod_CurrentSimbaTab.DoInvoke;
+procedure TSimbaMethod_SimbaCurrentTab.DoInvoke;
 begin
   Result.Write(SimbaScriptTabsForm.TabIndex, SizeOf(Int32));
 end;
-constructor TSimbaMethod_CurrentSimbaTab.Create;
+constructor TSimbaMethod_SimbaCurrentTab.Create;
 begin
   inherited Create();
 end;
 
 
-procedure TSimbaMethod_CountSimbaTabs.DoInvoke;
+procedure TSimbaMethod_SimbaCountTabs.DoInvoke;
 begin
   Result.Write(SimbaScriptTabsForm.TabCount, SizeOf(Int32));
 end;
-constructor TSimbaMethod_CountSimbaTabs.Create;
+constructor TSimbaMethod_SimbaCountTabs.Create;
 begin
   inherited Create();
 end;

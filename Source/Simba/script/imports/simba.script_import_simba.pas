@@ -242,7 +242,7 @@ procedure Lape_CurrentSimbaTab(const Params: PParamArray; const Result: Pointer)
 var
   Method: TSimbaMethod;
 begin
-  Method := TSimbaMethod_CurrentSimbaTab.Create();
+  Method := TSimbaMethod_SimbaCurrentTab.Create();
 
   try
     SimbaScript.Invoke(Method);
@@ -253,11 +253,11 @@ begin
   end;
 end;
 
-procedure Lape_CountSimbaTabs(const Params: PParamArray; const Result: Pointer); {$IFDEF Lape_CDECL}cdecl;{$ENDIF}
+procedure Lape_SimbaCountTabs(const Params: PParamArray; const Result: Pointer); {$IFDEF Lape_CDECL}cdecl;{$ENDIF}
 var
   Method: TSimbaMethod;
 begin
-  Method := TSimbaMethod_CountSimbaTabs.Create();
+  Method := TSimbaMethod_SimbaCountTabs.Create();
 
   try
     SimbaScript.Invoke(Method);
@@ -321,8 +321,8 @@ begin
     addGlobalFunc('procedure SimbaRunButton;', @Lape_SimbaRunButton);
     addGlobalFunc('procedure SimbaRunDefault;', @LapeSimbaRunDefault);
 
-    addGlobalFunc('function SimbaCurrentTab: Int32;', @Lape_CurrentSimbaTab);
-    addGlobalFunc('function SimbaCountTabs: Int32;', @Lape_CountSimbaTabs);
+    addGlobalFunc('function SimbaCurrentTab: Int32;', @Lape_SimbaCurrentTab);
+    addGlobalFunc('function SimbaCountTabs: Int32;', @Lape_SimbaCountTabs);
     addGlobalFunc('procedure SimbaCloseTab;', @Lape_SimbaCloseTab);
     addGlobalFunc('procedure SimbaCloseCurrentTab;', @Lape_SimbaCloseCurrentTab);
   end;
