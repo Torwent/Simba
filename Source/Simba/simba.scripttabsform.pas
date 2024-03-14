@@ -66,11 +66,13 @@ type
     function GetTabCount: Int32;
     function GetTab(Index: Int32): TSimbaScriptTab;
     function GetCurrentTab: TSimbaScriptTab;
+    function GetCurrentTabIndex: Int32;
     function GetCurrentEditor: TSimbaEditor;
 
     procedure SetCurrentTab(Value: TSimbaScriptTab);
   public
     property TabCount: Int32 read GetTabCount;
+    property TabIndex: Int32 read GetCurrentTabIndex;
     property Tabs[Index: Int32]: TSimbaScriptTab read GetTab;
 
     property CurrentTab: TSimbaScriptTab read GetCurrentTab write SetCurrentTab;
@@ -375,6 +377,11 @@ begin
   Result := nil;
   if (Notebook.TabIndex > -1) then
     Result := Notebook.Pages[Notebook.TabIndex] as TSimbaScriptTab;
+end;
+
+function TSimbaScriptTabsForm.GetCurrentTabIndex: Int32;
+begin
+  Result := Notebook.TabIndex;
 end;
 
 function TSimbaScriptTabsForm.GetCurrentEditor: TSimbaEditor;
