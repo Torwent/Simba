@@ -506,7 +506,8 @@ var
   aborted: Boolean;
 begin
   Params.Read(Tab, SizeOf(Int32));
-  SimbaScriptTabsForm.RemoveTab(SimbaScriptTabsForm.Tabs[Tab], aborted);
+  if (Tab > -1) and (Tab <= SimbaScriptTabsForm.TabCount) then
+     SimbaScriptTabsForm.RemoveTab(SimbaScriptTabsForm.Tabs[Tab], aborted);
 end;
 constructor TSimbaMethod_SimbaCloseTab.Create(Tab: Int32);
 begin

@@ -238,7 +238,7 @@ begin
 end;
 
 
-procedure Lape_CurrentSimbaTab(const Params: PParamArray; const Result: Pointer); {$IFDEF Lape_CDECL}cdecl;{$ENDIF}
+procedure Lape_SimbaCurrentTab(const Params: PParamArray; const Result: Pointer); {$IFDEF Lape_CDECL}cdecl;{$ENDIF}
 var
   Method: TSimbaMethod;
 begin
@@ -319,7 +319,7 @@ begin
 
     addGlobalFunc('procedure SimbaOpenInTab(const FileName: String);', @Lape_SimbaOpenInTab);
     addGlobalFunc('procedure SimbaRunButton;', @Lape_SimbaRunButton);
-    addGlobalFunc('procedure SimbaRunDefault;', @LapeSimbaRunDefault);
+    addGlobalFunc('procedure SimbaRunDefault;', @Lape_SimbaRunDefault);
 
     addGlobalFunc('function SimbaCurrentTab: Int32;', @Lape_SimbaCurrentTab);
     addGlobalFunc('function SimbaCountTabs: Int32;', @Lape_SimbaCountTabs);
