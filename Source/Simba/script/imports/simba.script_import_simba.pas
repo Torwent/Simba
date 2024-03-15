@@ -323,7 +323,7 @@ begin
 
     addGlobalFunc('function SimbaCurrentTab: Int32;', @Lape_SimbaCurrentTab);
     addGlobalFunc('function SimbaCountTabs: Int32;', @Lape_SimbaCountTabs);
-    addGlobalFunc('procedure SimbaCloseTab;', @Lape_SimbaCloseTab);
+    addGlobalFunc('procedure SimbaCloseTab(const Tab: Int32);', @Lape_SimbaCloseTab);
     addGlobalFunc('procedure SimbaCloseCurrentTab;', @Lape_SimbaCloseCurrentTab);
   end;
 end;
