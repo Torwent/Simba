@@ -89,6 +89,13 @@ type
     constructor Create(FileName: ShortString); overload;
   end;
 
+  TSimbaMethod_SimbaRunInTab = class(TSimbaMethod)
+  protected
+    procedure DoInvoke; override;
+  public
+    constructor Create(FileName: ShortString); overload;
+  end;
+
 
   TSimbaMethod_SimbaRunButton = class(TSimbaMethod)
   protected
@@ -208,6 +215,7 @@ const
     TSimbaMethod_GetSimbaTargetWindow,
 
     TSimbaMethod_SimbaOpenInTab,
+    TSimbaMethod_SimbaRunInTab,
     TSimbaMethod_SimbaRunButton,
     TSimbaMethod_SimbaRunDefault,
 
@@ -455,6 +463,17 @@ begin
   SimbaScriptTabsForm.Open(FileName);
 end;
 constructor TSimbaMethod_SimbaOpenInTab.Create(FileName: ShortString);
+
+procedure TSimbaMethod_SimbaRunInTab.DoInvoke;
+var
+  FileName: ShortString;
+begin
+  Params.Read(FileName, SizeOf(ShortString));
+  SimbaScriptTabsForm.Open(FileName);
+  SimbaForm.RunButton.Click;
+end;
+
+constructor TSimbaMethod_SimbaRunInTab.Create(FileName: ShortString);
 begin
   inherited Create();
   Params.Write(FileName, SizeOf(ShortString));
