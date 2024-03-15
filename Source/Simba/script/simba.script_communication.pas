@@ -463,6 +463,10 @@ begin
   SimbaScriptTabsForm.Open(FileName);
 end;
 constructor TSimbaMethod_SimbaOpenInTab.Create(FileName: ShortString);
+begin
+  inherited Create();
+  Params.Write(FileName, SizeOf(ShortString));
+end;
 
 procedure TSimbaMethod_SimbaRunInTab.DoInvoke;
 var
