@@ -53,6 +53,7 @@ type
     FDragging: record
       X, Y: Integer;
       Active: Boolean;
+      Enabled: Boolean;
     end;
 
     FPaintTime: Double;
@@ -148,11 +149,13 @@ type
     function GetStatus: String;
     function GetShowScrollbars: Boolean;
     function GetShowStatusBar: Boolean;
+    function GetAllowMoving: Boolean;
 
     procedure SetCursor(Value: TCursor); override;
     procedure SetStatus(Value: String);
     procedure SetShowScrollbars(AValue: Boolean);
     procedure SetShowStatusBar(AValue: Boolean);
+    procedure SetAllowMoving(AValue: Boolean);
     procedure SetBackground(AValue: TBitmap);
   public
     constructor Create(AOwner: TComponent); override;
@@ -171,6 +174,7 @@ type
 
     property ShowStatusBar: Boolean read GetShowStatusBar write SetShowStatusBar;
     property ShowScrollbars: Boolean read GetShowScrollbars write SetShowScrollbars;
+    property AllowMoving: Boolean read GetAllowMoving write SetAllowMoving;
 
     property LastPaintTime: Double read GetLastPaintTime;
     property StatusBar: TSimbaStatusBar read FStatusBar;
@@ -180,7 +184,7 @@ type
     property BackgroundOwner: Boolean read FBackgroundOwner write FBackgroundOwner;
     property MouseX: Integer read FMouseX;
     property MouseY: Integer read FMouseY;
-    property MousePoint: TPoint read GetMousePoint;
+    property MouseXY: TPoint read GetMousePoint;
 
     property OnImgKeyDown: TImageBoxKeyEvent read FOnImgKeyDown write FOnImgKeyDown;
     property OnImgKeyUp: TImageBoxKeyEvent read FOnImgKeyUp write FOnImgKeyUp;
@@ -422,7 +426,7 @@ begin
   X += VisibleTopX;
   Y += VisibleTopY;
 
-  if (Button = mbRight) then
+  if FDragging.Enabled and (Button = mbRight) then
   begin
     FDragging.X := X;
     FDragging.Y := Y;
@@ -447,7 +451,7 @@ begin
   X += VisibleTopX;
   Y += VisibleTopY;
 
-  if (Button = mbRight) then
+  if FDragging.Enabled and (Button = mbRight) then
   begin
     FDragging.Active := False;
 
@@ -872,6 +876,11 @@ begin
   Result := FShowStatusBar;
 end;
 
+function TSimbaImageBox.GetAllowMoving: Boolean;
+begin
+  Result := FImageScrollBox.FDragging.Enabled;
+end;
+
 procedure TSimbaImageBox.SetShowScrollbars(AValue: Boolean);
 begin
   FShowScrollBars := AValue;
@@ -885,6 +894,11 @@ begin
   FShowStatusBar := AValue;
 
   FStatusBar.Visible := FShowStatusBar;
+end;
+
+procedure TSimbaImageBox.SetAllowMoving(AValue: Boolean);
+begin
+  FImageScrollBox.FDragging.Enabled := AValue;
 end;
 
 procedure TSimbaImageBox.SetBackground(AValue: TBitmap);
