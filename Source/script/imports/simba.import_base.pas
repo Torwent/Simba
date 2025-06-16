@@ -820,6 +820,7 @@ begin
     addBaseDefine('SIMBA' + Format('%d', [SIMBA_VERSION]));
     addBaseDefine('SIMBAMAJOR' + Format('%d', [SIMBA_MAJOR]));
     addBaseDefine('FPC' + Format('%d', [FPC_FULLVERSION]));
+    addBaseDefine('SIMBACOMMIT := ''' + Format('%d', [SIMBA_COMMIT]) + '');
     addBaseDefine(CPU);
     addBaseDefine(OS);
 
